@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>HỆ THỐNG HỖ TRỢ ĐẶT PHÒNG</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="Shortcut Icon" href="images/icon.png" type="image/x-icon"/>
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+<!--   google font -->
+  <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Pinyon+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+  
+<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><img class="logo" src="images/logo.png" alt="logo"></a>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<!--	<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">Categoties</a></li>
+					<li><a href="#">##</a></li>
+					<li><a href="#">##</a></li> -->
+<div class="relative">
+          <a class="headerButton bgRedButton" href="trangchu.html">
+    Đăng Xuất
+  </a>
+  <a class="headerLink cff" href=" ">MY ACCOUNT</a>
+        <a href="" class="headerAvatar" title="Tay Nguyen"><img src="images/empty2.png" alt="avatar"></a>
+  
+        
+  
+</div>
+				
+				<!-- <ul class="nav navbar-nav navbar-right"> -->
+				<!--	 -->
+			</div>
+		</div>
+	</nav>
+
+  <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <button type="button" class="btn btn-default">search</button>
+            </div>
+          </form>
+         </ul>
+
+<div class="container-fluid content">    
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+      	<div class="panel-heading">
+      		<h3 class="panel-title">MENU</h3>
+      	</div>
+      	<div class="panel-body">
+      		<div class="list-group">
+      			<a href="#" class="list-group-item">Trang Chủ</a>
+      			<a href="#" class="list-group-item">Tìm Phòng Trống</a>
+      			<a href="#" class="list-group-item">Đặt Phòng</a>
+      			<a href="#" class="list-group-item">Hủy Đặt Phòng</a>
+      			<a href="#" class="list-group-item">Diễn Đàn</a>
+      		</div>
+      	</div>
+      </div>
+      <div class="panel panel-default">
+      	<div class="panel-heading">
+      		<h3 class="panel-title">Đào Tạo</h3>
+      	</div>
+      	<div class="panel-body">
+      		<div class="list-group">
+      			<a href="#" class="list-group-item">Tuyển Sinh</a>
+      			<a href="#" class="list-group-item">Lịch Học Vụ</a>
+      			<a href="#" class="list-group-item">##</a>
+      			<a href="#" class="list-group-item">###</a>
+            <a href="#" class="list-group-item">###</a>
+      			
+      		</div>
+      	</div>
+      </div>
+    </div>
+
+
+    <div class="row container">
+    <div id="logInFrame">
+      <form action="#" id="login-form">
+
+          <div class="heading">Danh Sách Phòng Tìm Thấy</div>
+          <div class="left col-xs-12 col-sm-6 col-md-6">
+            <p class="" style="margin-bottom:10px;">1. Phòng 101H1</p>
+            <p>2. phòng 102H1 </p>
+            <p>2. phòng 103H1 </p>
+            <p>2. phòng 104H1 </p>
+            <p>2. phòng 105H1 </p>
+            <p>2. phòng 106H1 </p>
+         
+
+      <div class=" ">Số Phòng Trống 5</div>
+    </div>
+
+    <script src="js/watch.js"></script>
+<script>
+$(document).ready(function(){
+  $('#demo1').stopwatch().stopwatch('start');
+  var steps = $('form').find(".questions");
+  var count = steps.size();
+  steps.each(function(i){
+    hider=i+2;
+    if (i == 0) {   
+        $("#question_" + hider).hide();
+        createNextButton(i);
+        }
+    else if(count==i+1){
+      var step=i + 1;
+      //$("#next"+step).attr('type','submit');
+            $("#next"+step).on('click',function(){
+
+         submit();
+
+            });
+      }
+    else{
+      $("#question_" + hider).hide();
+      createNextButton(i);
+    }
+
+  });
+    function submit(){
+       $.ajax({
+            type: "POST",
+            url: "ajax.php",
+            data: $('form').serialize(),
+            success: function(msg) {
+              $("#quiz_form,#demo1").addClass("hide");
+              $('#result').show();
+              $('#result').append(msg);
+            }
+       });
+
+  }
+  function createNextButton(i){
+    var step = i + 1;
+    var step1 = i + 2;
+        $('#next'+step).on('click',function(){
+          $("#question_" + step).hide();
+          $("#question_" + step1).show();
+        });
+  }
+  setTimeout(function() {
+        submit();
+  }, 50000);
+});
+</script> 
+</form>  
+    </div>
+  </div>
+
+
+
+
+     
+        <div class="row">
+        	<ul class="pagination">
+        		<li><a href="#">&laquo;</a></li>
+        		<li><a href="#">1</a></li>
+        		<li><a href="#">2</a></li>
+        		<li><a href="#">3</a></li>
+        		<li><a href="#">4</a></li>
+        		<li><a href="#">5</a></li>
+        		<li><a href="#">&raquo;</a></li>
+        	</ul>
+        </div> 
+    </div> 
+    <div class="col-sm-2 ad">
+      <div class="poster">
+      	
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<footer class="container-fluid">
+	<div class="row">
+		<div class="footer-img">
+	  		<a class="navbar-brand" href="#"><img class="logo" src="images/bk-logo.png" alt="logo"></a>
+		</div>
+	</div>
+	<div class="row">
+		<ul>
+			<li><a href="">Contact us</a>  |  </li>
+			<li><a href="">Service</a>  |  </li>
+			<li><a href="">Help</a></li>
+		</ul>
+	</div>
+	
+</footer>
+
+</body>
+</html>
